@@ -5,6 +5,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import joblib
+import ast
 
 
 
@@ -62,21 +63,26 @@ async def genres(year: int):
     # Obtener los 5 géneros más vendidos
     top_genres = [genre for genre, _ in sorted_genres[:5]]
     
-    return {"year": year, "top_genres": top_genres}
+    # Crear un diccionario para el resultado final
+    result_dict = {}
+    for genre in top_genres:
+        # Obtener la cantidad de juegos de cada género en el año específico
+        count = genre_counts.get(genre, 0)
+        result_dict[genre] = count
+    
+    return result_dict
 
 # Función que retorna una lista de juegos lanzados en un año dado
 @app.get("/juegos/")
 async def juegos(year: int):
     # Filtrar el DataFrame para obtener solo los datos del año específico
     df_year = df[df["año"] == int(year)]
-    
-   # Crear un diccionario para almacenar los juegos
-    juegos_dict = {}
-    
-    # Iterar sobre el DataFrame y agregar los juegos al diccionario
-    for index, juego in df_year['title'].items():
-        juegos_dict[index] = juego
-    
+
+    # Obtener la lista de juegos del año específico
+    juegos_list = df_year['title'].tolist()
+
+    juegos_dict = {year: juegos_list}
+
     return juegos_dict
 
 # Función que retorna una lista con las 5 especificaciones de juegos que más se vendieron 
@@ -88,6 +94,7 @@ async def specs(year: int):
     # Crear un diccionario para contar la cantidad de veces que aparece cada género
     spec_counts = {}
     for specs_list in df_year['specs']:
+        specs_list = ast.literal_eval(specs_list)  # Convertir la cadena a una lista
         for spec in specs_list:
             spec_counts[spec] = spec_counts.get(spec, 0) + 1
     
@@ -97,7 +104,7 @@ async def specs(year: int):
     # Obtener los 5 specs más vendidos
     top_specs = [spec for spec, _ in sorted_specs[:5]]
     
-    return {"year": year, "top_specs": top_specs}
+    return {"top_specs": top_specs}
 
 # Función que retorna la cantidad de juegos que tuvieron early access en un año dado
 @app.get("/earlyacces/")
@@ -134,7 +141,7 @@ async def metascore(year: int):
     # Obtener los 5 juegos con mayor metascore
     top_5_games = df_sorted.head(5)["title"].to_list()
     
-    return {"year": year, "metascore": top_5_games}
+    return {"top5_metascore": top_5_games}
 
 # Función que predice el precio de un juego según los parámetros dados por el usuario
 @app.get("/prediction/")
