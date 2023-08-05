@@ -5,7 +5,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import joblib
-import pickle
+import yaml
 import ast
 
 
@@ -31,13 +31,13 @@ async def load_data_and_model():
     df_modelo_entrenado = pd.read_csv('df_modelo_entrenado.csv')
 
     # Cargar el modelo entrenado desde el archivo .pkl
-    with open("modelo_entrenado.pkl","rb") as f:
-        tree_model = pickle.load(f)
+    with open('modelo_entrenado.yaml', 'r') as f:
+        tree_model = yaml.load(f, Loader=yaml.FullLoader)
 
     # Cargar el LabelEncoder usado para los genres desde el archivo .pkl
     label_encoder = joblib.load('label_encoder.pkl')
 
-    # Feature engineering y entrenamiento del modelo
+    # Feature engineering
     feature_cols = ["early_access","genres_encoded","metascore","año"]
     X = df_modelo_entrenado[feature_cols]
     y = df_modelo_entrenado["price"]
