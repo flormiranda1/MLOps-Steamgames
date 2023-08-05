@@ -1,11 +1,10 @@
 from fastapi import FastAPI
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import joblib
-import yaml
 import ast
 
 
@@ -30,10 +29,6 @@ async def load_data_and_model():
     # Cargar los datos del CSV usado para el entrenamiento del modelo, resultado del EDA
     df_modelo_entrenado = pd.read_csv('df_modelo_entrenado.csv')
 
-    # Cargar el modelo entrenado desde el archivo .pkl
-    with open('modelo_entrenado.yaml', 'r') as f:
-        tree_model = yaml.load(f, Loader=yaml.FullLoader)
-
     # Cargar el LabelEncoder usado para los genres desde el archivo .pkl
     label_encoder = joblib.load('label_encoder.pkl')
 
@@ -43,7 +38,13 @@ async def load_data_and_model():
     y = df_modelo_entrenado["price"]
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
+    
+    tree_model = DecisionTreeRegressor(max_depth=20, min_samples_leaf=1, min_samples_split=2)
+
+    tree_model.fit(X_train, y_train)
+
     y_train_pred = tree_model.predict(X_train)
+    y_test_pred = tree_model.predict(X_test)
 
     rmse_train_static = mean_squared_error(y_train, y_train_pred, squared=False)
     
