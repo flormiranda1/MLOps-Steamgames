@@ -55,4 +55,4 @@ Se decide tomar como [modelo definitivo](https://github.com/flormiranda1/Proyect
 ## Links útiles 📎🎬 
 - Repositorio (Github): https://github.com/flormiranda1/Proyecto-steamgames
 - Deploy del Proyecto (Render): https://fastapi-steam-games.onrender.com/docs#/
-- Video explicativo (Youtube): 
+- Video explicativo (Drive): https://drive.google.com/file/d/1APmfoHEV_t3M7IVa-lC1199Npne_axDE/view?usp=sharing
