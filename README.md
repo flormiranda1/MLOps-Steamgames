@@ -41,7 +41,7 @@ Se crean algunas funciones de recomendación en base a un año que el usuario in
 📌 Top 5 de juegos con mayor metascore en el año solicitado
 
 
-### 3) [MLOps: modelo de predicción de precios](https://github.com/flormiranda1/Proyecto-steamgames/blob/main/modelo.ipynb) 🔎📊
+### 3) MLOps: modelo de predicción de precios 🔎📊
 
 * Se realizan algunos ajustes más al dataset, eliminando columnas innecesarias para el modelo de predicción y se realizan análisis exploratirios con la ayuda de diagramas como el pairplot, heatmap e histogramas. Se abordan dos enfoques diferentes para el tratamiento de los datos en busca de conseguir los mejores resultados (score y rmse) en el modelo de ML.
 
@@ -49,7 +49,7 @@ El [primer enfoque](https://github.com/flormiranda1/Proyecto-steamgames/blob/mai
 
 El [segundo enfoque](https://github.com/flormiranda1/Proyecto-steamgames/blob/main/An%C3%A1lisis%20EDA%20y%20ML%202.ipynb) utilizado es conservar todos los nulos de metascore (guardados como ceros) y además usar el método de get dummies para la separación de la columna genres. Se realiza todo el proceso EDA y el entrenamiento de tres modelos diferentes (DecisionTreeRegressor, RandomForest, GradientBoostingRegressor y GreedSearch en los dos últimos). No se consiguen buenos resultados, scores muy bajos y rmse en el rango de 10 y 15.
 
-Se decide tomar como modelo definitivo el RandomForest con los mejores hiperparámetros arrojados por el GridSearch.
+Se decide tomar como [modelo definitivo](https://github.com/flormiranda1/Proyecto-steamgames/blob/main/modelo.ipynb) el RandomForest con los mejores hiperparámetros arrojados por el GridSearch. Se alimenta en nuestra API desde el [dataset reducido](https://github.com/flormiranda1/Proyecto-steamgames/blob/main/df_modelo_entrenado.csv) luego del proceso EDA.
 
 
 ## Links útiles 📎🎬 
