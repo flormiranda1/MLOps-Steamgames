@@ -26,14 +26,20 @@ Los datos utilizados en este proyecto provienen de un archivo json que contiene 
 * Se eliminaron columnas innecesarias.
 [Dataset modificado](https://github.com/flormiranda1/Proyecto-steamgames/blob/main/steam_games_limpio.csv)
 
+
 ### 2) [Funciones de recomendación](https://github.com/flormiranda1/Proyecto-steamgames/blob/main/Transformaciones_funciones.ipynb) 
 
 Se crean algunas funciones de recomendación en base a un año que el usuario ingresa en relación a diferentes variables:
 📌 Top 5 de géneros según el año que se ingrese
+
 📌 Lista de juegos en el año que se ingrese
+
 📌 Juegos con early_access en el año que se ingrese
+
 📌 Distribución de sentimientos en el año ingresado
+
 📌 Top 5 de juegos con mayor metascore en el año solicitado
+
 
 ### 3) [MLOps: modelo de predicción de precios](https://github.com/flormiranda1/Proyecto-steamgames/blob/main/modelo.ipynb) 🔎📊
 
@@ -44,6 +50,7 @@ El [primer enfoque](https://github.com/flormiranda1/Proyecto-steamgames/blob/mai
 El [segundo enfoque](https://github.com/flormiranda1/Proyecto-steamgames/blob/main/An%C3%A1lisis%20EDA%20y%20ML%202.ipynb) utilizado es conservar todos los nulos de metascore (guardados como ceros) y además usar el método de get dummies para la separación de la columna genres. Se realiza todo el proceso EDA y el entrenamiento de tres modelos diferentes (DecisionTreeRegressor, RandomForest, GradientBoostingRegressor y GreedSearch en los dos últimos). No se consiguen buenos resultados, scores muy bajos y rmse en el rango de 10 y 15.
 
 Se decide tomar como modelo definitivo el RandomForest con los mejores hiperparámetros arrojados por el GridSearch.
+
 
 ## Links útiles 📎🎬 
 - Repositorio (Github): https://github.com/flormiranda1/Proyecto-steamgames
