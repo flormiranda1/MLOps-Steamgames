@@ -1,7 +1,7 @@
 ![Henry](henry.jpg)
 # Proyecto-SteamGames-FastAPI 🎮
 
-El proyecto de MLOps de Steam Games es un sistema de Machine Learning centrado en el análisis y predicción del precio de los juegos disponibles en la plataforma Steam. Utilizando técnicas de Data Science, se procesa y explora un conjunto de datos que incluye diversas características de los juegos, como género, fecha de lanzamiento, metascore, entre otras.
+El proyecto de MLOps de Steam Games consiste en un sistema de Machine Learning centrado en el análisis y predicción del precio de los juegos disponibles en la plataforma Steam. Utilizando técnicas de Data Science, se procesa y explora un conjunto de datos que incluye diversas características de los juegos, como género, fecha de lanzamiento, metascore, entre otras.
 
 ## Flujo de trabajo 🔨💻
 
