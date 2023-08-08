@@ -109,6 +109,15 @@ async def specs(year: int):
     
     return {"top_specs": top_specs}
 
+@app.get('/specs_modificado/')
+def specs(year: str):
+    df_year = df[df["año"] == int(year)]
+    lista_specs = [spec for sublist in df_year["specs"] for spec in sublist]
+    freq_specs = pd.Series(lista_specs).value_counts()
+    top_5_specs = freq_specs.head(5)
+    resultado_dict = top_5_specs.to_dict()
+    return resultado_dict
+
 # Función que retorna la cantidad de juegos que tuvieron early access en un año dado
 @app.get("/earlyacces/")
 async def early_access(year: int):
